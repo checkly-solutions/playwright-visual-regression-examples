@@ -1,25 +1,15 @@
 // animations.spec.ts
 import { test, expect } from "@playwright/test";
 
-test.describe("Visual regression – handle animations", () => {
-  test("should freeze animations before snapshot", async ({ page }) => {
-    await page.goto("https://www.checklyhq.com");
+test("test", async ({ page }) => {
+  await page.locator("body").click();
+  await page.goto("http://uitestingplayground.com/");
+  await page.getByRole("link", { name: "Animated Button" }).click();
+  await page.getByRole("button", { name: "Start Animation" }).click();
+/* 
+     When using toHaveScreenshot, animations are automatically set to "disabled". 
+     This prevents animations from causing flakiness in visual regression tests.
+*/ 
+  await expect(page).toHaveScreenshot({animations: 'disabled'});
 
-    // Example: disable CSS animations/transitions globally
-    await page.addStyleTag({
-      content: `
-      *, *::before, *::after {
-        transition: none !important;
-        animation: none !important;
-      }
-    `,
-    });
-
-    // Wait for layout stable state
-    await page.waitForTimeout(1000);
-
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-      "landing-page-no-animations.png"
-    );
-  });
 });

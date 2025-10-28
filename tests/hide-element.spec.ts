@@ -1,22 +1,18 @@
-// hide-element.spec.ts
+// component-only.spec.ts
 import { test, expect } from "@playwright/test";
 
-test.describe("Visual regression with hidden element", () => {
-  test("should hide dynamic banner then match snapshot", async ({ page }) => {
-    await page.goto("https://www.checklyhq.com");
-    // Suppose there is a dynamic rotating banner or animation we want to hide
-    const bannerSelector = "header .hero-banner"; // adjust
-    await page.waitForSelector(bannerSelector);
+test("test", async ({ page }) => {
+  await page.goto("http://uitestingplayground.com/");
+  await page.getByRole("link", { name: "Click" }).click();
+  await expect(
+    page.getByRole("button", { name: "Button That Ignores DOM Click" })
+  ).toBeVisible();
 
-    // Hide the element so it doesn't cause flakiness
-    await page.locator(bannerSelector).evaluate((el) => {
-      (el as HTMLElement).style.visibility = "hidden";
-    });
-
-    await page.waitForTimeout(500); // give layout a moment
-
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-      "landing-page-hide-banner.png"
-    );
+  /*
+  We focus on a single component of the entire page & 
+  then take a screenshot of the entire page with the masked image
+  */
+  await expect(page).toHaveScreenshot({
+    mask: [page.getByRole("button", { name: "Button That Ignores DOM Click" })],
   });
 });
