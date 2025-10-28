@@ -1,0 +1,22 @@
+{
+  "name": "playwright-visual-regression-examples",
+  "version": "1.0.0",
+  "description": "There is a dearth of example for visual regression and vanilla playwright. This repo seeks to address that by providing working relevant examples based on common practices and use cases for visual regression while using Playwright testing.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/checkly-solutions/playwright-visual-regression-examples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/checkly-solutions/playwright-visual-regression-examples/issues"
+  },
+  "homepage": "https://github.com/checkly-solutions/playwright-visual-regression-examples#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.1"
+  }
+}
