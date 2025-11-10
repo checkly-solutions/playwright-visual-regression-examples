@@ -8,14 +8,9 @@ test("test", async ({ page }) => {
     page.getByRole("button", { name: "Button That Ignores DOM Click" })
   ).toBeVisible();
 
-    const section = await page.locator('//*[@id="badButton"]').first();
-    // adjust selector to target the hero component
-    await page.waitForTimeout(300);
+  /*
+  We focus on a specific component using xpaths. It's preferred to use more stable selectors like data-testid, or custom ids in real projects.
+  */
+  await expect(page.locator("xpath=/html/body/section/div")).toHaveScreenshot()
 
-    expect(await section.screenshot()).toMatchSnapshot("hero-component.png");
-
-  await page
-    .getByRole("button", { name: "Button That Ignores DOM Click" })
-    .click();
-  // Target id="badButton" and obscure w/ Playwright after click
 });

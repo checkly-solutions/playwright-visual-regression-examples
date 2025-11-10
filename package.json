@@ -16,7 +16,12 @@
   },
   "homepage": "https://github.com/checkly-solutions/playwright-visual-regression-examples#readme",
   "devDependencies": {
+    "@checkly/playwright-reporter": "^0.1.2",
     "@playwright/test": "^1.56.1",
-    "@types/node": "^24.9.1"
+    "@types/node": "^24.9.1",
+    "jiti": "^2.6.1"
+  },
+  "dependencies": {
+    "checkly": "^6.8.2"
   }
 }
